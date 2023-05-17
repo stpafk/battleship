@@ -16,8 +16,13 @@ function Ship(length) {
         return sunk;
     }
 
+    function getHits() {
+        return hits
+    }
+
     return {
         hit,
-        isSunk
+        isSunk,
+        getHits
     }
 }
