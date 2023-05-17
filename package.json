@@ -1,0 +1,14 @@
+{
+  "name": "batalha-naval",
+  "version": "1.0.0",
+  "description": "batalha naval",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
