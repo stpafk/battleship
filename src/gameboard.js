@@ -1,19 +1,13 @@
 
 module.exports = gameBoard;
 
-function gameBoard() {
+const gameBoard = () => {
     
-    let grid = 
-    [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+    let board = Array(10).fill(null).map(() => Array(10).fill(null));
+
+    function getBoard() { return board };
+    
+    const placedShips = []
 
     
     function placeShip(ship, direction, row, column) {
@@ -41,14 +35,17 @@ function gameBoard() {
         if (direction === "vertical") {
 
             for (let i = 0; i < shipLength; i++) {
-                grid[row + i][column] = ship;
+                grid[row + i][column] = true;
             }
         } else {
             
             for (let i = 0; i < shipLength; i++)
-                grid[row][column + i] = ship; 
+                grid[row][column + i] = true; 
             
         }
+
+        placedShips.push(ship);
+
     }
 
     function receiveAttack(x, y) {
@@ -61,6 +58,7 @@ function gameBoard() {
     }
 
     return {
+        getBoard,
         placeShip,
         receiveAttack
     }
