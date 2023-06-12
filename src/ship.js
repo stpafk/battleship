@@ -34,21 +34,17 @@ const Ship = (type) => {
 
     const hits = Array(length).fill(null);
 
-    function hit(index) {
-        hits[index] = 'hit';
-    }
+    const hit = (index) => (hits[index] = 'hit');
 
-    function isSunk() {
-        return hits.every((hit_) => hit_ === "hit");
-    }
-
-    function getHits() {
-        return hits;
-    }
+    const isSunk = () => hits.every((hit_) => hit_ === "hit");
+    
+    const getHits = () => hits;
 
     return {
+        id, 
+        length,
         hit,
         isSunk,
-        getHits
+        getHits    
     }
 }

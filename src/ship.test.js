@@ -1,13 +1,13 @@
 const Ship = require('/workspaces/battleship/src/ship');
 
 test("Hit method should increase", () => {
-    const ship = Ship(3);
+    const ship = Ship("Destroyer");
     ship.hit();
     expect(ship.getHits()).toBe(1);
 })
 
 test("Three hits sunks ship", () => {
-    const ship = Ship(3);
+    const ship = Ship("Submarine");
     ship.hit();
     ship.hit();
     ship.hit();
@@ -15,7 +15,7 @@ test("Three hits sunks ship", () => {
 })
 
 test("Three hits sunks ship", () => {
-    const ship = Ship(3);
+    const ship = Ship("Cruiser");
     ship.hit();
     ship.hit();
     ship.hit();

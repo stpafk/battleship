@@ -9,7 +9,6 @@ const gameBoard = () => {
     
     const placedShips = []
 
-    
     function placeShip(ship, direction, row, column) {
 
         let shipLength = 0;
@@ -44,7 +43,7 @@ const gameBoard = () => {
             
         }
 
-        placedShips.push(ship);
+        placedShips.push(ship)
 
     }
 
