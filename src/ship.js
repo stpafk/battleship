@@ -6,7 +6,7 @@ function Ship(length) {
     let sunk = false;
 
     function hit() {
-        hits ++;
+        hits++;
         if (hits === length) {
             sunk = true;
         }
