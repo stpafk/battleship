@@ -86,3 +86,15 @@ test("Receive attack function sunks ship", () => {
     
     expect(gameboard.placedShips[0].isSunk()).toBe(true)
 })
+
+test("Valid position should work for boundaries", () => {
+    const gameboard = Gameboard();
+    const ship = Ship("Destroyer");
+    const ship2 = Ship("Carrier");
+
+    expect(gameboard.placeShip(ship, "horizontal", 0, 9)).toBe(false)
+    expect(gameboard.placeShip(ship, "vertical", 0, 0)).toBe(true)
+    expect(gameboard.placeShip(ship2, "horizontal", 0, 6)).toBe(false)
+    expect(gameboard.placeShip(ship2, "horizontal", 0, 5)).toBe(true)
+
+})

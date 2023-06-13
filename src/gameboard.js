@@ -7,19 +7,51 @@ const Gameboard = () => {
 
     /** Returns the board. */
     function getBoard() { return board };
+
     /** Function that checks if all ships have been placed
      * Game won't start if it ain't.
      * @return boolean
      */
     function allShipsPlaced() { return placedShips.length === 5}
+
     /** Function that checks if the ship placement is valid I.E under range.
      * @param {ship} ship Takes the ship object to work with its atributes
      * @param {direction} direction Whether the direction is horizontal or vertical
+     * @param {row} row Row taken from placeShip
+     * @param {column} column Column taken from placeShip
      * @return {boolean} True or false
      */
-    function isValidPosition(ship, direction) {
+    function isValidPosition(ship, direction, row, column) {
+        let x = row
+        let y = column
+        if (x < 0 || x >= 10 || y < 0 || y >= 10) {
+            return false;
+        }
+        if (direction === "vertical") {
+            if (x + ship.length > 10) {
+                return false;
+            }
 
+            for (let i = 0; i < ship.length; i++) {
+                if (board[x + i][y] !== null) {
+                    return false;
+                }
+            }
+        } else {
+            if (y + ship.length > 10) {
+                return false;
+            }
+
+            for (let i=0; i < ship.length; i++) {
+                if (board[x][y + i] !== null) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     } 
+
     /** Function to place ship that takes four parameters: ship, direction, row, column
      * @param {ship} ship The Ship object taken from DOM
      * @param {direction} direction Horizontal or Vertical
@@ -29,21 +61,25 @@ const Gameboard = () => {
      */
     function placeShip(ship, direction, row, column) {
 
-        if (direction === "vertical") {
-            for (let i = 0; i < ship.length; i++) {
-                board[row + i][column] = {ship, index: i};
-                //ship.position.push([row + i, column])
+        if (isValidPosition(ship, direction, row, column) === true) {
+            if (direction === "vertical") {
+                for (let i = 0; i < ship.length; i++) {
+                    board[row + i][column] = {ship, index: i};
+                    //ship.position.push([row + i, column])
+                }
+            } else {
+                for (let i = 0; i < ship.length; i++)
+                    board[row][column + i] = {ship, index: i}; 
+                    //ship.position.push([row, column + i])
+                
             }
-        } else {
-            for (let i = 0; i < ship.length; i++)
-                board[row][column + i] = {ship, index: i}; 
-                //ship.position.push([row, column + i])
-            
-        }
-
-        placedShips.push(ship);
-
+    
+            placedShips.push(ship);
+            return true;
+        } 
+        return false;
     }
+
     /** Function receive attack that takes two parameters: x and y
      * @param {x} x First (row) index taken from the matrix
      * @param {y} y Second (column) index taken from the matrix
