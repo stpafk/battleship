@@ -106,7 +106,7 @@ const Gameboard = () => {
         
         for (let i = 0; i < placedShips.length; i++) {
             if (placedShips[i].isSunk() === false) {
-                return false
+                return false;
             }
         }
         return true;
