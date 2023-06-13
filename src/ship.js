@@ -30,7 +30,6 @@ const Ship = (type) => {
 
     let id = type;
     let length = shipData(type);
-    let position = [];
     
     const hits = Array(length).fill(null);
 

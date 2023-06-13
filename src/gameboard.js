@@ -8,7 +8,6 @@ const gameBoard = () => {
     function getBoard() { return board };
     
     const missedAttacks = [];
-    const placedShips = [];
 
     function placeShip(ship, direction, row, column) {
 
@@ -35,30 +34,32 @@ const gameBoard = () => {
         if (direction === "vertical") {
 
             for (let i = 0; i < shipLength; i++) {
-                grid[row + i][column] = true;
-                ship.position.push([row + i, column])
+                board[row + i][column] = {ship, index: i};
+                //ship.position.push([row + i, column])
             }
         } else {
             
             for (let i = 0; i < shipLength; i++)
-                grid[row][column + i] = true; 
-                ship.position.push([row, column + i])
+                board[row][column + i] = {ship, index: i}; 
+                //ship.position.push([row, column + i])
             
         }
 
-        placedShips.push(ship)
+        placedShips.push(ship);
 
     }
 
     function receiveAttack(x, y) {
 
-        if (grid[x][y] === "Attacked") {
-            missedAttacks.push([x, y]);
+        if (grid[x][y] === null) {
+            grid[x][y] === "miss";
             return;
-        } else {
+        } else if (board[x][y].ship) {
+            board[x][y].hit(board[x][y].index);
             grid[x][y] = "Attacked";
-            
+
         }
+        return board[x][y];
     }
 
     return {
