@@ -1,43 +1,21 @@
 
-const gameBoard = () => {
+const Gameboard = () => {
     
     let board = Array(10).fill(null).map(() => Array(10).fill(null));
+    const missedAttacks = [];
+    const placedShips = [];
 
     function getBoard() { return board };
-    
-    const missedAttacks = [];
 
     function placeShip(ship, direction, row, column) {
 
-        let shipLength = 0;
-
-        switch(ship) {
-            case "Destroyer": 
-                shipLength = 2
-                break;
-            case "Submarine":
-                shipLength = 3;
-                break;
-            case "Cruiser": 
-                shipLength = 3;
-                break;
-            case "Battleship":
-                shipLength = 4;
-                break;
-            case "Carrier":
-                shipLength = 5;
-                break;
-        }
-
         if (direction === "vertical") {
-
-            for (let i = 0; i < shipLength; i++) {
+            for (let i = 0; i < ship.length; i++) {
                 board[row + i][column] = {ship, index: i};
                 //ship.position.push([row + i, column])
             }
         } else {
-            
-            for (let i = 0; i < shipLength; i++)
+            for (let i = 0; i < ship.length; i++)
                 board[row][column + i] = {ship, index: i}; 
                 //ship.position.push([row, column + i])
             
@@ -61,6 +39,9 @@ const gameBoard = () => {
     }
 
     return {
+        board,
+        missedAttacks,
+        placedShips,
         getBoard,
         placeShip,
         receiveAttack
@@ -68,4 +49,4 @@ const gameBoard = () => {
 
 }
 
-module.exports = gameBoard;
+module.exports = Gameboard;
