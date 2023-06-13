@@ -99,12 +99,27 @@ const Gameboard = () => {
         return board[x][y];
     }
 
+    /** Function that checks whether the game has ended (5 ships sunk)
+     * @return Boolean
+     */
+    function isGameOver() {
+        
+        for (let i = 0; i < placedShips.length; i++) {
+            if (placedShips[i].isSunk() === false) {
+                return false
+            }
+        }
+        return true;
+
+    }
+
     return {
         board,
         missedAttacks,
         placedShips,
         allShipsPlaced,
         isValidPosition,
+        isGameOver,
         getBoard,
         placeShip,
         receiveAttack
