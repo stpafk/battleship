@@ -30,8 +30,8 @@ const Ship = (type) => {
 
     let id = type;
     let length = shipData(type);
+    let position = [];
     
-
     const hits = Array(length).fill(null);
 
     const hit = (index) => (hits[index] = 'hit');
@@ -43,6 +43,7 @@ const Ship = (type) => {
     return {
         id, 
         length,
+        position,
         hit,
         isSunk,
         getHits    
