@@ -16,6 +16,30 @@ test("Placing works", () => {
     expect(gameboard.placedShips.length).toBe(1)
 })
 
+test("Expect all placed ships to be true", () => {
+    const gameboard = Gameboard();
+    const s1 = Ship("Destroyer");
+    const s2 = Ship("Cruiser");
+    const s3 = Ship("Submarine");
+    const s4 = Ship("Battleship");
+    const s5 = Ship("Carrier");
+
+    gameboard.placeShip(s1, "horizontal", 0, 0);
+    gameboard.placeShip(s2, "horizontal", 1, 0);
+    gameboard.placeShip(s3, "horizontal", 2, 0);
+    gameboard.placeShip(s4, "horizontal", 3, 0);
+    gameboard.placeShip(s5, "horizontal", 4, 0);
+
+    expect(gameboard.allShipsPlaced()).toBe(true);
+})
+
+test("Missed attack correctly displayed", () => {
+    const gameboard = Gameboard();
+    gameboard.receiveAttack(0, 0);
+
+    expect(gameboard.missedAttacks.length).toBe(1);
+})
+
 test("Vertical works", () => {
     const gameboard = Gameboard();
     const ship = Ship("Destroyer");
@@ -59,6 +83,6 @@ test("Receive attack function sunks ship", () => {
 
     gameboard.receiveAttack(0, 0);
     gameboard.receiveAttack(0, 1);
-    console.log(gameboard.placedShips)
+    
     expect(gameboard.placedShips[0].isSunk()).toBe(true)
 })
