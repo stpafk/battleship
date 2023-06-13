@@ -36,3 +36,29 @@ test("Horizontal works", () => {
     }
 })
 
+test("Receive Attack works with null", () => {
+    const gameboard = Gameboard();
+
+    gameboard.receiveAttack(0, 0);
+    expect(gameboard.board[0][0]).toBe("miss");
+})
+
+test("Receive Attack works with placed ship", () => {
+    const gameboard = Gameboard();
+    const ship = Ship("Destroyer");
+    gameboard.placeShip(ship, "horizontal", 0, 0);
+
+    gameboard.receiveAttack(0, 0);
+    expect(gameboard.board[0][0]).toBe("hit");
+})
+
+test("Receive attack function sunks ship", () => {
+    const gameboard = Gameboard();
+    const ship = Ship("Destroyer");
+    gameboard.placeShip(ship, "horizontal", 0, 0);
+
+    gameboard.receiveAttack(0, 0);
+    gameboard.receiveAttack(0, 1);
+    console.log(gameboard.placedShips)
+    expect(gameboard.placedShips[0].isSunk()).toBe(true)
+})

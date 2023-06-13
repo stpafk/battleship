@@ -27,14 +27,14 @@ const Gameboard = () => {
 
     function receiveAttack(x, y) {
 
-        if (grid[x][y] === null) {
-            grid[x][y] === "miss";
-            return;
-        } else if (board[x][y].ship) {
-            board[x][y].hit(board[x][y].index);
-            grid[x][y] = "Attacked";
+        if (board[x][y] === null) {
+            board[x][y] = "miss";
 
+        } else if (board[x][y].ship) {
+            board[x][y].ship.hit(board[x][y].index);
+            board[x][y] = "hit";
         }
+
         return board[x][y];
     }
 
