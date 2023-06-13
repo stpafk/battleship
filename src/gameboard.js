@@ -1,6 +1,4 @@
 
-module.exports = gameBoard;
-
 const gameBoard = () => {
     
     let board = Array(10).fill(null).map(() => Array(10).fill(null));
@@ -68,5 +66,6 @@ const gameBoard = () => {
         receiveAttack
     }
 
-
 }
+
+module.exports = gameBoard;

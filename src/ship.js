@@ -1,6 +1,3 @@
-
-module.exports = Ship;
-
 function shipData(type) {
 
     let len = 0;
@@ -42,9 +39,11 @@ const Ship = (type) => {
     return {
         id, 
         length,
-        position,
         hit,
+        hits,
         isSunk,
         getHits    
     }
 }
+
+module.exports = Ship;
