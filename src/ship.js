@@ -38,14 +38,7 @@ const Ship = (type) => {
     /** Non-parameter function that returns the hits taken by the ship */
     const getHits = () => hits;
 
-    return {
-        id, 
-        length,
-        hit,
-        hits,
-        isSunk,
-        getHits    
-    }
+    return {id, length, hit, hits, isSunk, getHits}
 }
 
 module.exports = Ship;
