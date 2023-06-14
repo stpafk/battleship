@@ -24,15 +24,15 @@ const Player = (type = 'human') => {
 
     function randomPlay(gameboard) {
         
-        let rowRandNumber = Math.floor(Math.random()*10);
-        let columnRandNumber = Math.floor(Math.random()*10);
+        const x = Math.floor(Math.random() * 10);
+        const y = Math.floor(Math.random() * 10);
 
-        const hit = gameboard.getBoard()[rowRandNumber, columnRandNumber];
+        const hit = gameboard.getBoard()[x, y];
 
         if (hit === "miss" || hit === "hit") {
             randomPlay(gameboard);
         } else {
-            gameboard.receiveAttack(rowRandNumber, columnRandNumber);
+            gameboard.receiveAttack(x, y);
         }
     }
 

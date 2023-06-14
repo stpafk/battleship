@@ -111,9 +111,32 @@ const Gameboard = () => {
 
     }
 
-    function autoPlace() {
+    function autoPlace(ship) {
+        const x = Math.floor(Math.random() * 10);
+        const y = Math.floor(Math.random() * 10);
+        const changeOrient = Math.random() > 0.5;
+        if (changeOrient) {
+            ship.changeDirection();
+        }
+
+        const place = placeShip(ship, x, y)
+        if (!place) {
+            autoPlace(ship);
+        }
 
     }
+
+    function autoPlaceFleet(fleet) {
+        for (let ship in fleet) {
+            autoPlace(fleet[ship]);
+        }
+    }
+
+    function reset() {
+        board = Array(10).fill(null).map(() => Array(10).fill(null));
+        placedShips = [];
+    }
+
 
     return {board, missedAttacks, placedShips, allShipsPlaced, isValidPosition, isGameOver, getBoard, placeShip, receiveAttack}
 

@@ -12,7 +12,7 @@ test("Placing works", () => {
     const ship = Ship("Carrier");
     const ship2 = Ship("Battleship")
 
-    gameboard.placeShip(ship, "horizontal", 0, 0);
+    gameboard.placeShip(ship, 0, 0);
     expect(gameboard.placedShips.length).toBe(1)
 })
 
@@ -24,11 +24,11 @@ test("Expect all placed ships to be true", () => {
     const s4 = Ship("Battleship");
     const s5 = Ship("Carrier");
 
-    gameboard.placeShip(s1, "horizontal", 0, 0);
-    gameboard.placeShip(s2, "horizontal", 1, 0);
-    gameboard.placeShip(s3, "horizontal", 2, 0);
-    gameboard.placeShip(s4, "horizontal", 3, 0);
-    gameboard.placeShip(s5, "horizontal", 4, 0);
+    gameboard.placeShip(s1, 0, 0);
+    gameboard.placeShip(s2, 1, 0);
+    gameboard.placeShip(s3, 2, 0);
+    gameboard.placeShip(s4, 3, 0);
+    gameboard.placeShip(s5, 4, 0);
 
     expect(gameboard.allShipsPlaced()).toBe(true);
 })
@@ -54,7 +54,7 @@ test("Horizontal works", () => {
     const gameboard = Gameboard();
     const ship = Ship("Carrier");
 
-    gameboard.placeShip(ship, "horizontal", 0, 0);
+    gameboard.placeShip(ship, 0, 0);
     for (let i = 0; i < 5; i++) {
         expect(gameboard.board[0][i]).not.toBeNull();
     }
@@ -70,7 +70,7 @@ test("Expect receiveAttack to miss", () => {
 test("Expect receive attack to hit", () => {
     const gameboard = Gameboard();
     const ship = Ship("Destroyer");
-    gameboard.placeShip(ship, "horizontal", 0, 0);
+    gameboard.placeShip(ship, 0, 0);
 
     gameboard.receiveAttack(0, 0);
     expect(gameboard.board[0][0]).toBe("hit");
@@ -79,7 +79,7 @@ test("Expect receive attack to hit", () => {
 test("Expect receive attack function to sink ship", () => {
     const gameboard = Gameboard();
     const ship = Ship("Destroyer");
-    gameboard.placeShip(ship, "horizontal", 0, 0);
+    gameboard.placeShip(ship, 0, 0);
 
     gameboard.receiveAttack(0, 0);
     gameboard.receiveAttack(0, 1);
@@ -92,10 +92,11 @@ test("Expect valid position to be correctly placed", () => {
     const ship = Ship("Destroyer");
     const ship2 = Ship("Carrier");
 
-    expect(gameboard.placeShip(ship, "horizontal", 0, 9)).toBe(false)
-    expect(gameboard.placeShip(ship, "vertical", 0, 0)).toBe(true)
-    expect(gameboard.placeShip(ship2, "horizontal", 0, 6)).toBe(false)
-    expect(gameboard.placeShip(ship2, "horizontal", 0, 5)).toBe(true)
+    expect(gameboard.placeShip(ship, 0, 9)).toBe(false)
+    ship.changeDirection();
+    expect(gameboard.placeShip(ship, 0, 0)).toBe(true)
+    expect(gameboard.placeShip(ship2, 0, 6)).toBe(false)
+    expect(gameboard.placeShip(ship2, 0, 5)).toBe(true)
 
 })
 
@@ -104,8 +105,9 @@ test("Expect positioning already taken x and y to return false", () => {
     const ship = Ship("Destroyer");
     const ship2 = Ship("Carrier");
 
-    expect(gameboard.placeShip(ship, "vertical", 0, 0)).toBe(true)
-    expect(gameboard.placeShip(ship2, "horizontal", 0, 0)).toBe(false)
+    ship.changeDirection();
+    expect(gameboard.placeShip(ship, 0, 0)).toBe(true)
+    expect(gameboard.placeShip(ship2, 0, 0)).toBe(false)
 })
 
 test("Game test with only one gameboard should pass all tests", () => {
