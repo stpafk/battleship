@@ -27,7 +27,7 @@ const Ship = (type) => {
 
     let id = type;
     let length = shipData(type);
-    
+    let direction = 
     const hits = Array(length).fill(null);
     
     /** Hit function takes the index from DOM
@@ -37,6 +37,7 @@ const Ship = (type) => {
     const isSunk = () => hits.every((hit_) => hit_ === "hit");
     /** Non-parameter function that returns the hits taken by the ship */
     const getHits = () => hits;
+    const changeDirection = () => { }
 
     return {id, length, hit, hits, isSunk, getHits}
 }
