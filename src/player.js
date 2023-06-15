@@ -1,5 +1,6 @@
 import Ship from "./ship";
 
+
 const Player = (type = 'human') => {
 
     const fleet = createFleet()
@@ -40,4 +41,4 @@ const Player = (type = 'human') => {
 
 }
 
-export default Player;
+module.exports = Player;
