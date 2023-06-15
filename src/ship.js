@@ -25,9 +25,9 @@ function shipData(type) {
 
 const Ship = (type) => {
 
-    let id = type;
-    let shipLength = shipData(type);
-    let direction = "horizontal";
+    const id = type;
+    const shipLength = shipData(type);
+    let direction = 'horizontal';
     const hits = Array(shipLength).fill(null);
     
     /** Hit function takes the index from DOM
@@ -37,9 +37,12 @@ const Ship = (type) => {
     const isSunk = () => hits.every((hit_) => hit_ === "hit");
     /** Non-parameter function that returns the hits taken by the ship */
     const getHits = () => hits;
-    const changeDirection = () => (direction ? "horizontal" : "vertical");
+    const getDirection = () => direction;
+    const changeDirection = () => {
+        direction === 'horizontal' ? (direction = "vertical") : (direction = 'horizontal');
+    }
 
-    return {changeDirection, getHits, hit, hits, id, isSunk, shipLength}
+    return {changeDirection, getDirection, getHits, hit, hits, id, isSunk, shipLength}
 }
 
 module.exports = Ship;

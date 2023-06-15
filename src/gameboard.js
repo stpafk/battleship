@@ -26,22 +26,22 @@ const Gameboard = () => {
         if (x < 0 || x >= 10 || y < 0 || y >= 10) {
             return false;
         }
-        if (ship.direction === "vertical") {
-            if (x + ship.length > 10) {
+        if (ship.getDirection() === "vertical") {
+            if (x + ship.shipLength > 10) {
                 return false;
             }
 
-            for (let i = 0; i < ship.length; i++) {
+            for (let i = 0; i < ship.shipLength; i++) {
                 if (board[x + i][y] !== null) {
                     return false;
                 }
             }
         } else {
-            if (y + ship.length > 10) {
+            if (y + ship.shipLength > 10) {
                 return false;
             }
 
-            for (let i=0; i < ship.length; i++) {
+            for (let i=0; i < ship.shipLength; i++) {
                 if (board[x][y + i] !== null) {
                     return false;
                 }
@@ -59,14 +59,14 @@ const Gameboard = () => {
      */
     function placeShip(ship, row, column) {
 
-        if (isValidPosition(ship, direction, row, column) === true) {
-            if (ship.direction === "vertical") {
-                for (let i = 0; i < ship.length; i++) {
+        if (isValidPosition(ship, row, column) === true) {
+            if (ship.getDirection() === "vertical") {
+                for (let i = 0; i < ship.shipLength; i++) {
                     board[row + i][column] = {ship, index: i};
                     //ship.position.push([row + i, column])
                 }
             } else {
-                for (let i = 0; i < ship.length; i++)
+                for (let i = 0; i < ship.shipLength; i++)
                     board[row][column + i] = {ship, index: i}; 
                     //ship.position.push([row, column + i])
                 

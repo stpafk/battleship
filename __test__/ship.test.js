@@ -50,10 +50,18 @@ test("Number of hits well displayed", () => {
 
 test("Carrier length should be 5", () => {
     const ship = Ship("Carrier");
-    expect(ship.length).toBe(5);
+    expect(ship.shipLength).toBe(5);
 })
 
 test("Ship ID should work", () => {
     const ship = Ship("Carrier");
     expect(ship.id).toBe("Carrier");
+})
+
+test("Expect changeDirection to change horizontal to vertical", () => {
+    const ship = Ship("Carrier");
+    console.log(ship.direction)
+    ship.changeDirection();
+
+    expect(ship.getDirection()).toBe("vertical");
 })

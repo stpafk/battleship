@@ -43,8 +43,9 @@ test("Missed attack correctly displayed", () => {
 test("Vertical works", () => {
     const gameboard = Gameboard();
     const ship = Ship("Destroyer");
-
-    gameboard.placeShip(ship, "vertical", 0, 0);
+    ship.changeDirection();
+    
+    gameboard.placeShip(ship, 0, 0);
     expect(gameboard.board[0][0]).not.toBeNull();
     expect(gameboard.board[1][0]).not.toBeNull();
     expect(gameboard.board[2][0]).toBe(null)
@@ -118,11 +119,11 @@ test("Game test with only one gameboard should pass all tests", () => {
     const ship3 = Ship("Battleship")
     const ship4 = Ship("Carrier");
 
-    gameboard.placeShip(ship, "horizontal", 0, 0)
-    gameboard.placeShip(ship1, "horizontal", 1, 0)
-    gameboard.placeShip(ship2, "horizontal", 2, 0)
-    gameboard.placeShip(ship3, "horizontal", 3, 0)
-    gameboard.placeShip(ship4, "horizontal", 4, 0)
+    gameboard.placeShip(ship, 0, 0)
+    gameboard.placeShip(ship1, 1, 0)
+    gameboard.placeShip(ship2, 2, 0)
+    gameboard.placeShip(ship3, 3, 0)
+    gameboard.placeShip(ship4, 4, 0)
 
     gameboard.receiveAttack(0, 0);
     gameboard.receiveAttack(0, 1);
@@ -146,8 +147,6 @@ test("Game test with only one gameboard should pass all tests", () => {
     gameboard.receiveAttack(4, 3);
     gameboard.receiveAttack(4, 4);
 
-    console.log(gameboard.placedShips)
-
     expect(gameboard.placedShips[0].isSunk()).toBe(true);
     expect(gameboard.placedShips[1].isSunk()).toBe(true);
     expect(gameboard.placedShips[2].isSunk()).toBe(true);
@@ -163,9 +162,9 @@ test("Game over should be false", () => {
     const ship3 = Ship("Battleship")
     const ship4 = Ship("Carrier");
 
-    gameboard.placeShip(ship, "horizontal", 0, 0)
-    gameboard.placeShip(ship1, "horizontal", 1, 0)
-    gameboard.placeShip(ship2, "horizontal", 2, 0)
+    gameboard.placeShip(ship, 0, 0)
+    gameboard.placeShip(ship1, 1, 0)
+    gameboard.placeShip(ship2, 2, 0)
 
     gameboard.receiveAttack(0, 0);
     gameboard.receiveAttack(0, 1);
@@ -173,8 +172,6 @@ test("Game over should be false", () => {
     gameboard.receiveAttack(1, 0);
     gameboard.receiveAttack(1, 1);
     gameboard.receiveAttack(1, 2);
-
-    console.log(gameboard.placedShips)
 
     expect(gameboard.isGameOver()).toBe(false);
 })
@@ -184,8 +181,8 @@ test("Expect isGameOver to be true", () => {
     const ship = Ship("Destroyer");
     const ship1 = Ship("Submarine");
 
-    gameboard.placeShip(ship, "horizontal", 0, 0);
-    gameboard.placeShip(ship1, "horizontal", 1, 0);
+    gameboard.placeShip(ship, 0, 0);
+    gameboard.placeShip(ship1,  1, 0);
 
     gameboard.receiveAttack(0, 0);
     gameboard.receiveAttack(0, 1);
@@ -193,8 +190,6 @@ test("Expect isGameOver to be true", () => {
     gameboard.receiveAttack(1, 0);
     gameboard.receiveAttack(1, 1);
     gameboard.receiveAttack(1, 2);
-
-    console.log(gameboard.placedShips)
 
     expect(gameboard.isGameOver()).toBe(true);
 })
