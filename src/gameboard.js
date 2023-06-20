@@ -139,7 +139,7 @@ const Gameboard = () => {
     }
 
 
-    return {board, missedAttacks, placedShips, allShipsPlaced, isValidPosition, isGameOver, getBoard, placeShip, receiveAttack}
+    return {autoPlaceFleet, board, missedAttacks, placedShips, allShipsPlaced, isValidPosition, isGameOver, getBoard, placeShip, receiveAttack, reset}
 
 }
 

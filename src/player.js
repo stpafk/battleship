@@ -1,4 +1,4 @@
-import Ship from "./ship";
+const Ship = require("./ship")
 
 const Player = (type = 'human') => {
 
@@ -7,7 +7,7 @@ const Player = (type = 'human') => {
     const getFleet = () => fleet;
     const resetFleet = () => ( fleet = createFleet() )
 
-    const createFleet = () => {
+    function createFleet() {
 
         const type = ["Destroyer", "Submarine", "Cruiser", "Battleship", "Carrier"];
         const fleet = {};
