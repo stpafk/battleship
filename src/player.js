@@ -1,6 +1,5 @@
 import Ship from "./ship";
 
-
 const Player = (type = 'human') => {
 
     const fleet = createFleet()
